@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shwethan Kumar Anumalla – Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-bracket">[</span>SKA<span class="logo-bracket">]</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#certifications" class="nav-link">Certs</a></li>
+        <li><a href="#achievements" class="nav-link">Achievements</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="scanlines"></div>
+    <div class="hero-content">
+      <div class="hero-tag">// available for opportunities</div>
+      <h1 class="hero-name">Shwethan Kumar<br/><span class="name-accent">Anumalla</span></h1>
+      <div class="hero-role">
+        <span class="role-prefix">&gt; </span>
+        <span class="typed-text" id="typedText"></span>
+        <span class="cursor-blink">_</span>
+      </div>
+      <p class="hero-bio">MCA student at JNTU Hyderabad · Data Analyst · Builder of intelligent systems</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-val">5</span><span class="stat-label">Internships</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-val">3</span><span class="stat-label">Projects</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-val">30+</span><span class="stat-label">Certifications</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-val">1700+</span><span class="stat-label">LeetCode Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">scroll down ↓</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-num">01</span>
+        <h2 class="section-title">About</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid fade-in">
+        <div class="about-text">
+          <p>I'm <strong>Shwethan Kumar Anumalla</strong>, a data analytics and full-stack developer based in <span class="accent">Hyderabad, India</span>. Currently pursuing my MCA at JNTU Hyderabad, I blend analytical rigor with engineering precision to build systems that extract insight from data.</p>
+          <p>From building AI Interview Simulators to engineering Power BI dashboards, I thrive at the intersection of data science and software engineering. I've interned at 5 companies across data analytics, web development, cybersecurity, and enterprise platforms.</p>
+          <p>Outside of code, I compete in national hackathons, climb LeetCode rankings, and mentor peers as Placement Coordinator for my department.</p>
+          <div class="about-location">
+            <span class="accent-dot"></span>
+            <span>Hyderabad, Telangana, India</span>
+          </div>
+        </div>
+        <div class="about-edu">
+          <div class="edu-label">// education.log</div>
+          <div class="edu-list">
+            <div class="edu-item">
+              <div class="edu-year">2025–2027</div>
+              <div class="edu-details">
+                <div class="edu-degree">MCA</div>
+                <div class="edu-school">JNTU Hyderabad</div>
+                <div class="edu-score">88%</div>
+              </div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-year">2022–2025</div>
+              <div class="edu-details">
+                <div class="edu-degree">B.Sc Data Science</div>
+                <div class="edu-school">Vivekananda Degree & PG College</div>
+                <div class="edu-score">80.94%</div>
+              </div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-year">2020–2022</div>
+              <div class="edu-details">
+                <div class="edu-degree">Higher Secondary</div>
+                <div class="edu-school">Trinity Junior College</div>
+                <div class="edu-score">97.7%</div>
+              </div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-year">2019–2020</div>
+              <div class="edu-details">
+                <div class="edu-degree">Secondary</div>
+                <div class="edu-school">Telangana State Model School</div>
+                <div class="edu-score">95%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Skills</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid fade-in">
+        <div class="skill-category">
+          <div class="skill-cat-label">// Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">C</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-label">// Analytics & BI</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Excel</span>
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Tableau</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-label">// Web Development</div>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">React.js</span>
+            <span class="skill-tag">Spring Boot</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-label">// Tools & Databases</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-bars fade-in">
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>Data Analytics</span><span class="skill-pct">92%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>Python</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>Power BI / Tableau</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>SQL</span><span class="skill-pct">82%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>Full Stack Dev</span><span class="skill-pct">75%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>Machine Learning</span><span class="skill-pct">70%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Experience</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="timeline fade-in">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="tl-header">
+              <div>
+                <div class="tl-role">Data Analytics Intern</div>
+                <div class="tl-company">ApexPlanet Software Pvt Ltd</div>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Apr 2026 – Present</span>
+                <span class="tl-location">Remote</span>
+              </div>
+            </div>
+            <div class="tl-tags">
+              <span class="tl-tag">Microsoft Excel</span>
+              <span class="tl-tag">Power BI</span>
+              <span class="tl-tag">Data Analytics</span>
+              <span class="tl-tag">AI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="tl-header">
+              <div>
+                <div class="tl-role">Data Mining and Analytics Intern</div>
+                <div class="tl-company">UptoSkills</div>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Mar 2026 – Present</span>
+                <span class="tl-location">Remote</span>
+              </div>
+            </div>
+            <ul class="tl-bullets">
+              <li>Performed data mining and analytics tasks on company and college datasets</li>
+              <li>Developed 8 analytics dashboards and visualizations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="tl-header">
+              <div>
+                <div class="tl-role">Web Development Intern</div>
+                <div class="tl-company">Cyber Solutions & Information Board (CSIB)</div>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Mar 2026 – Apr 2026</span>
+                <span class="tl-location">Remote</span>
+              </div>
+            </div>
+            <ul class="tl-bullets">
+              <li>Developed Admin Dashboard, Territory, Booking, and Payment modules</li>
+              <li>Built admin/worker utilities and supported backend development</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="tl-header">
+              <div>
+                <div class="tl-role">Cyber Security Intern</div>
+                <div class="tl-company">VOIS</div>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Mar 2026 – Apr 2026</span>
+                <span class="tl-location">Remote</span>
+              </div>
+            </div>
+            <div class="tl-tags">
+              <span class="tl-tag">AI</span>
+              <span class="tl-tag">Machine Learning</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="tl-header">
+              <div>
+                <div class="tl-role">Intern</div>
+                <div class="tl-company">ServiceNow</div>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Feb 2026 – Apr 2026</span>
+                <span class="tl-location">Remote</span>
+              </div>
+            </div>
+            <div class="tl-tags">
+              <span class="tl-tag">Flows</span>
+              <span class="tl-tag">Automated Test Framework (ATF)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Projects</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid fade-in">
+
+        <div class="project-card">
+          <div class="project-number">01</div>
+          <div class="project-header">
+            <div class="project-icon">⚡</div>
+            <h3 class="project-title">AI Interview Simulator</h3>
+          </div>
+          <p class="project-desc">Full-stack AI Interview Simulator with 15+ REST APIs, JWT authentication, and responsive multi-user support. AI-driven evaluation system with dashboards and PDF reporting, improving engagement by 40%+.</p>
+          <div class="project-tags">
+            <span class="proj-tag">Java</span>
+            <span class="proj-tag">React.js</span>
+            <span class="proj-tag">Spring Boot</span>
+            <span class="proj-tag">PostgreSQL</span>
+            <span class="proj-tag">JWT</span>
+          </div>
+          <a href="https://interview-simulator-itdx.onrender.com" class="project-link">View Project →</a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">02</div>
+          <div class="project-header">
+            <div class="project-icon">📊</div>
+            <h3 class="project-title">E-Commerce Analytics Dashboard</h3>
+          </div>
+          <p class="project-desc">Interactive dashboard analyzing sales trends and customer behavior patterns. Deployed using Streamlit and Render for real-time visualization with dynamic filters.</p>
+          <div class="project-tags">
+            <span class="proj-tag">Python</span>
+            <span class="proj-tag">Power BI</span>
+            <span class="proj-tag">Streamlit</span>
+            <span class="proj-tag">Render</span>
+          </div>
+          <a href="https://ecommerce-data-analysis.onrender.com" class="project-link">View Project →</a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">03</div>
+          <div class="project-header">
+            <div class="project-icon">🎓</div>
+            <h3 class="project-title">Student Performance Predictor</h3>
+          </div>
+          <p class="project-desc">Data-driven ML application that predicts student academic performance using multiple machine learning algorithms, enabling early intervention strategies.</p>
+          <div class="project-tags">
+            <span class="proj-tag">Python</span>
+            <span class="proj-tag">NumPy</span>
+            <span class="proj-tag">Machine Learning</span>
+            <span class="proj-tag">Pandas</span>
+          </div>
+          <a href="https://student-performance-predictor-qnia.onrender.com" class="project-link">View Project →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section" id="certifications">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Certifications</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="cert-filters fade-in">
+        <button class="cert-filter active" data-filter="all">All</button>
+        <button class="cert-filter" data-filter="microsoft">Microsoft</button>
+        <button class="cert-filter" data-filter="aws">AWS</button>
+        <button class="cert-filter" data-filter="datacamp">DataCamp</button>
+        <button class="cert-filter" data-filter="sololearn">Sololearn</button>
+        <button class="cert-filter" data-filter="infosys">Infosys</button>
+        <button class="cert-filter" data-filter="others">Others</button>
+      </div>
+      <div class="cert-grid fade-in" id="certGrid">
+
+        <div class="cert-card" data-cat="microsoft">
+          <div class="cert-issuer">Microsoft</div>
+          <div class="cert-name">Microsoft Fabric Learning Path</div>
+          <div class="cert-date">May 2026</div>
+        </div>
+        <div class="cert-card" data-cat="aws">
+          <div class="cert-issuer">AWS</div>
+          <div class="cert-name">Cloud Practitioner Essentials</div>
+          <div class="cert-date">May 2026</div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Cloud Technologies</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="others">
+          <div class="cert-issuer">VOIS</div>
+          <div class="cert-name">Power BI for Data Analysis</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="sololearn">
+          <div class="cert-issuer">Sololearn</div>
+          <div class="cert-name">Data Analytics with AI</div>
+          <div class="cert-date">Mar 2026</div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">TechA Data Analytics using Power BI Foundation</div>
+          <div class="cert-date">Apr 2026</div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Hands-on Data Visualization with Microsoft Power BI</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Power BI Training</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Power BI for Business Professionals</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Learning Microsoft Power BI</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="datacamp">
+          <div class="cert-issuer">DataCamp</div>
+          <div class="cert-name">Analyzing Data in Spreadsheets</div>
+          <div class="cert-date">Nov 2025</div>
+        </div>
+        <div class="cert-card" data-cat="datacamp">
+          <div class="cert-issuer">DataCamp</div>
+          <div class="cert-name">Data Analysis in Excel</div>
+          <div class="cert-date">Nov 2025</div>
+        </div>
+        <div class="cert-card" data-cat="datacamp">
+          <div class="cert-issuer">DataCamp</div>
+          <div class="cert-name">Data Visualization in Excel</div>
+          <div class="cert-date">Nov 2025</div>
+        </div>
+        <div class="cert-card" data-cat="datacamp">
+          <div class="cert-issuer">DataCamp</div>
+          <div class="cert-name">Introduction to Excel</div>
+          <div class="cert-date">Nov 2025</div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Excel</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="sololearn">
+          <div class="cert-issuer">Sololearn</div>
+          <div class="cert-name">SQL Intermediate</div>
+          <div class="cert-date">Apr 2026</div>
+        </div>
+        <div class="cert-card" data-cat="sololearn">
+          <div class="cert-issuer">Sololearn</div>
+          <div class="cert-name">Introduction to Java</div>
+          <div class="cert-date">Apr 2026</div>
+        </div>
+        <div class="cert-card" data-cat="sololearn">
+          <div class="cert-issuer">Sololearn</div>
+          <div class="cert-name">Introduction to SQL</div>
+          <div class="cert-date">Mar 2026</div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Multidimensional Data Modeling</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Big Data</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Data Science</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Introduction to Entity Relationship ER Modeling</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Agile Scrum in Practice</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="infosys">
+          <div class="cert-issuer">Infosys Springboard</div>
+          <div class="cert-name">Software Engineering and Agile Software Development</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="others">
+          <div class="cert-issuer">Udemy</div>
+          <div class="cert-name">Complete Python Bootcamp 2022</div>
+          <div class="cert-date"></div>
+        </div>
+        <div class="cert-card" data-cat="others">
+          <div class="cert-issuer">Cisco</div>
+          <div class="cert-name">Networking Basics</div>
+          <div class="cert-date"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="section section-alt" id="achievements">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Achievements</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="achievements-grid fade-in">
+
+        <div class="ach-card">
+          <div class="ach-icon">🏆</div>
+          <div class="ach-text">
+            <div class="ach-title">LeetCode 1700+ Rating</div>
+            <div class="ach-sub">Solved extensive DSA problems in competitive contests</div>
+          </div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-icon">💻</div>
+          <div class="ach-text">
+            <div class="ach-title">30+ HackerRank Challenges</div>
+            <div class="ach-sub">Across Python, SQL, and problem solving domains</div>
+          </div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-icon">🚀</div>
+          <div class="ach-text">
+            <div class="ach-title">10+ National Hackathons</div>
+            <div class="ach-sub">IIT Goa, IIT Kharagpur, IIT Madras. Finalist – Simverse Hackathon (VIT AP)</div>
+          </div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-icon">🎯</div>
+          <div class="ach-text">
+            <div class="ach-title">State Rank 378 – TGICET 2025</div>
+            <div class="ach-sub">Top ranks in competitive entrance examinations</div>
+          </div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-icon">🌐</div>
+          <div class="ach-text">
+            <div class="ach-title">AIR 1970 – NIMCET 2025</div>
+            <div class="ach-sub">All India Rank in national MCA entrance examination</div>
+          </div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-icon">📌</div>
+          <div class="ach-text">
+            <div class="ach-title">Placement Coordinator</div>
+            <div class="ach-sub">MCA Department, JNTU Hyderabad</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-num">07</span>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-wrapper fade-in">
+        <div class="contact-left">
+          <p class="contact-intro">Open to data analytics roles, internships, and collaborative projects. Let's build something meaningful.</p>
+          <div class="contact-items">
+            <a href="mailto:shwethankumar977@gmail.com" class="contact-item">
+              <span class="contact-icon">✉</span>
+              <span>shwethankumar977@gmail.com</span>
+            </a>
+            <a href="tel:+917286074654" class="contact-item">
+              <span class="contact-icon">☎</span>
+              <span>+91 72860 74654</span>
+            </a>
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <span>Hyderabad, India</span>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/shwethan-kumar-anumalla-986076252/" class="social-link" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://github.com/shwethan-04" class="social-link" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://leetcode.com/u/shwethan_kumar_anumalla/" class="social-link" aria-label="LeetCode">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="contact-right">
+          <div class="terminal-box">
+            <div class="terminal-header">
+              <span class="t-dot red"></span>
+              <span class="t-dot yellow"></span>
+              <span class="t-dot green"></span>
+              <span class="t-title">contact.sh</span>
+            </div>
+            <div class="terminal-body">
+              <div class="t-line"><span class="t-prompt">$</span> ./reach_out.sh</div>
+              <div class="t-line t-output">Connecting to shwethan@hyderabad...</div>
+              <div class="t-line t-output">Status: <span class="t-green">AVAILABLE</span></div>
+              <div class="t-line t-output">Looking for: Data Analytics, Full Stack, ML</div>
+              <div class="t-line t-output">Response time: <span class="t-green">24h</span></div>
+              <div class="t-line"><span class="t-prompt">$</span> <span class="cursor-blink-sm">_</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo"><span class="logo-bracket">[</span>SKA<span class="logo-bracket">]</span></div>
+        <div class="footer-copy">© 2026 Shwethan Kumar Anumalla. Built with code & coffee.</div>
+        <div class="footer-links">
+          <a href="#hero" class="footer-link">Back to top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
