@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboards – Shwethan Kumar Anumalla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── PAGE-SPECIFIC STYLES ── */
+    .dash-hero {
+      padding: 140px 0 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .dash-hero-tag {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--green);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      opacity: 0.8;
+    }
+    .dash-hero-tag::before { content: '> '; }
+    .dash-hero-title {
+      font-family: var(--font-mono);
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .dash-hero-title span { color: var(--green); }
+    .dash-hero-sub {
+      font-size: 0.95rem;
+      color: var(--gray-light);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── FILTER BAR ── */
+    .dash-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+    .dash-filter {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      padding: 7px 16px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--gray-light);
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.06em;
+    }
+    .dash-filter:hover,
+    .dash-filter.active {
+      border-color: var(--green);
+      color: var(--green);
+      background: rgba(0,255,136,0.06);
+    }
+
+    /* ── DASHBOARD GRID ── */
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── DASHBOARD CARD ── */
+    .dash-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .dash-card:hover {
+      border-color: var(--green-dark);
+      box-shadow: 0 8px 40px rgba(0,255,136,0.1);
+      transform: translateY(-4px);
+    }
+    .dash-card.hidden { display: none; }
+
+    /* PDF preview area */
+    .dash-preview {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #080d08;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .dash-preview iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+    }
+    .dash-preview-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(9,14,9,0.55);
+      opacity: 0;
+      transition: opacity var(--transition);
+      cursor: pointer;
+    }
+    .dash-card:hover .dash-preview-overlay { opacity: 1; }
+    .dash-preview-btn {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 10px 22px;
+      border-radius: var(--radius);
+      border: 1px solid var(--green);
+      color: var(--green);
+      background: rgba(9,14,9,0.85);
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      transition: background var(--transition);
+    }
+    .dash-preview-btn:hover { background: rgba(0,255,136,0.12); }
+
+    /* Card body */
+    .dash-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .dash-cat-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--green-dim);
+      border: 1px solid var(--green-dark);
+      padding: 3px 9px;
+      border-radius: 3px;
+      width: fit-content;
+    }
+    .dash-title {
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.35;
+    }
+    .dash-desc {
+      font-size: 0.82rem;
+      color: var(--gray-light);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .dash-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .dash-tool-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 3px 8px;
+      border-radius: 3px;
+      background: var(--green-dim);
+      border: 1px solid var(--green-dark);
+      color: var(--green-text);
+    }
+    .dash-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .dash-btn {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.05em;
+      border: 1px solid var(--green-dark);
+      color: var(--green);
+      background: transparent;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dash-btn:hover {
+      border-color: var(--green);
+      background: rgba(0,255,136,0.08);
+      box-shadow: 0 0 14px rgba(0,255,136,0.15);
+    }
+    .dash-btn.primary {
+      background: var(--green);
+      color: var(--bg);
+      font-weight: 700;
+      border-color: var(--green);
+    }
+    .dash-btn.primary:hover {
+      background: transparent;
+      color: var(--green);
+    }
+
+    /* ── LIGHTBOX MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-box {
+      background: var(--card);
+      border: 1px solid var(--green-dark);
+      border-radius: 10px;
+      width: 100%;
+      max-width: 960px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(0,255,136,0.12);
+      transform: scale(0.96);
+      transition: transform 0.25s ease;
+    }
+    .modal-overlay.open .modal-box { transform: scale(1); }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      background: #0c120c;
+    }
+    .modal-title {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--green);
+      letter-spacing: 0.06em;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--gray-light);
+      font-size: 1.3rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color var(--transition);
+      padding: 2px 6px;
+    }
+    .modal-close:hover { color: var(--green); }
+    .modal-iframe-wrap {
+      flex: 1;
+      overflow: hidden;
+    }
+    .modal-iframe-wrap iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 70vh;
+      border: none;
+    }
+    .modal-footer {
+      padding: 12px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--gray-light);
+      transition: color var(--transition);
+      margin-bottom: 32px;
+    }
+    .back-link:hover { color: var(--green); }
+
+    @media (max-width: 768px) {
+      .dash-grid { grid-template-columns: 1fr; }
+      .modal-box { max-height: 95vh; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html#hero" class="nav-logo">
+        <span class="logo-bracket">[</span>SKA<span class="logo-bracket">]</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about"          class="nav-link">About</a></li>
+        <li><a href="index.html#skills"         class="nav-link">Skills</a></li>
+        <li><a href="index.html#experience"     class="nav-link">Experience</a></li>
+        <li><a href="index.html#projects"       class="nav-link">Projects</a></li>
+        <li><a href="dashboards.html"           class="nav-link" style="color:var(--green)">Dashboards</a></li>
+        <li><a href="index.html#certifications" class="nav-link">Certs</a></li>
+        <li><a href="index.html#achievements"   class="nav-link">Achievements</a></li>
+        <li><a href="index.html#contact"        class="nav-link">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="dash-hero">
+    <div class="container">
+      <a href="index.html" class="back-link">← Back to Portfolio</a>
+      <div class="dash-hero-tag">// analytics.dashboards</div>
+      <h1 class="dash-hero-title">My <span>Dashboards</span></h1>
+      <p class="dash-hero-sub">A collection of Power BI, Tableau, and Excel dashboards built during internships and personal projects — turning raw data into actionable insight.</p>
+    </div>
+  </div>
+
+  <!-- DASHBOARDS SECTION -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Filters -->
+      <div class="dash-filters fade-in">
+        <button class="dash-filter active" data-filter="all">All</button>
+        <button class="dash-filter" data-filter="powerbi">Power BI</button>
+        <button class="dash-filter" data-filter="excel">Excel</button>
+        <button class="dash-filter" data-filter="education">Education</button>
+        <button class="dash-filter" data-filter="hr">HR</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="dash-grid fade-in" id="dashGrid">
+
+        <!-- 1. College Intelligence Dashboard -->
+
+        <div class="dash-card" data-cat="education">
+          <div class="dash-preview">
+            <iframe
+              src="dashboards/College_Intelligence_Dashboard.pdf"
+              title="College Intelligence Dashboard"></iframe>
+            <div class="dash-preview-overlay"
+              data-pdf="dashboards/College_Intelligence_Dashboard.pdf"
+              data-title="College Intelligence Dashboard">
+              <button class="dash-preview-btn">⤢ Expand</button>
+            </div>
+          </div>
+          <div class="dash-body">
+            <span class="dash-cat-badge">Education</span>
+            <div class="dash-title">College Intelligence Dashboard</div>
+            <p class="dash-desc">An intelligence dashboard providing a comprehensive view of college-level data including rankings, facilities, and academic performance indicators.</p>
+            <div class="dash-tools">
+              <span class="dash-tool-tag">Power BI</span>
+              <span class="dash-tool-tag">DAX</span>
+            </div>
+            <div class="dash-actions">
+              <a href="dashboards/College_Intelligence_Dashboard.pdf" download class="dash-btn primary">⬇ Download</a>
+              <button class="dash-btn open-modal"
+                data-pdf="dashboards/College_Intelligence_Dashboard.pdf"
+                data-title="College Intelligence Dashboard">⤢ Full View</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Food Dashboard -->
+        <div class="dash-card" data-cat="powerbi">
+          <div class="dash-preview">
+            <iframe
+              src="dashboards/fooddbshwethan.pdf#toolbar=0&navpanes=0&scrollbar=0"
+              title="Food Analytics Dashboard"></iframe>
+            <div class="dash-preview-overlay"
+              data-pdf="dashboards/fooddbshwethan.pdf"
+              data-title="Food Analytics Dashboard">
+              <button class="dash-preview-btn">⤢ Expand</button>
+            </div>
+          </div>
+          <div class="dash-body">
+            <span class="dash-cat-badge">Power BI</span>
+            <div class="dash-title">Food Analytics Dashboard</div>
+            <p class="dash-desc">Visualizes food consumption patterns, category-wise sales, and supply chain metrics to support data-driven decisions in the food industry.</p>
+            <div class="dash-tools">
+              <span class="dash-tool-tag">Power BI</span>
+              <span class="dash-tool-tag">DAX</span>
+              <span class="dash-tool-tag">Excel</span>
+            </div>
+            <div class="dash-actions">
+              <a href="dashboards/fooddbshwethan.pdf" download class="dash-btn primary">⬇ Download</a>
+              <button class="dash-btn open-modal"
+                data-pdf="dashboards/fooddbshwethan.pdf"
+                data-title="Food Analytics Dashboard">⤢ Full View</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Higher Education Dashboard -->
+        <div class="dash-card" data-cat="education">
+          <div class="dash-preview">
+            <iframe
+              src="dashboards/highereducationdbshwethan.pdf#toolbar=0&navpanes=0&scrollbar=0"
+              title="Higher Education Dashboard"></iframe>
+            <div class="dash-preview-overlay"
+              data-pdf="dashboards/highereducationdbshwethan.pdf"
+              data-title="Higher Education Dashboard">
+              <button class="dash-preview-btn">⤢ Expand</button>
+            </div>
+          </div>
+          <div class="dash-body">
+            <span class="dash-cat-badge">Education</span>
+            <div class="dash-title">Higher Education Dashboard</div>
+            <p class="dash-desc">Analyzes higher education trends including enrollment rates, graduation outcomes, and institutional performance across regions.</p>
+            <div class="dash-tools">
+              <span class="dash-tool-tag">Power BI</span>
+              <span class="dash-tool-tag">DAX</span>
+            </div>
+            <div class="dash-actions">
+              <a href="dashboards/highereducationdbshwethan.pdf" download class="dash-btn primary">⬇ Download</a>
+              <button class="dash-btn open-modal"
+                data-pdf="dashboards/highereducationdbshwethan.pdf"
+                data-title="Higher Education Dashboard">⤢ Full View</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. HR Dashboard -->
+        <div class="dash-card" data-cat="hr">
+          <div class="dash-preview">
+            <iframe
+              src="dashboards/hrdashboard.pdf#toolbar=0&navpanes=0&scrollbar=0"
+              title="HR Analytics Dashboard"></iframe>
+            <div class="dash-preview-overlay"
+              data-pdf="dashboards/hrdashboard.pdf"
+              data-title="HR Analytics Dashboard">
+              <button class="dash-preview-btn">⤢ Expand</button>
+            </div>
+          </div>
+          <div class="dash-body">
+            <span class="dash-cat-badge">HR</span>
+            <div class="dash-title">HR Analytics Dashboard</div>
+            <p class="dash-desc">Tracks employee attrition, department-wise headcount, hiring trends, and performance metrics to support strategic HR decision-making.</p>
+            <div class="dash-tools">
+              <span class="dash-tool-tag">Power BI</span>
+              <span class="dash-tool-tag">DAX</span>
+              <span class="dash-tool-tag">Excel</span>
+            </div>
+            <div class="dash-actions">
+              <a href="dashboards/hrdashboard.pdf" download class="dash-btn primary">⬇ Download</a>
+              <button class="dash-btn open-modal"
+                data-pdf="dashboards/hrdashboard.pdf"
+                data-title="HR Analytics Dashboard">⤢ Full View</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Power Consumption Dashboard -->
+        <div class="dash-card" data-cat="powerbi">
+          <div class="dash-preview">
+            <iframe
+              src="dashboards/powerconsumptiondashboard (1).pdf#toolbar=0&navpanes=0&scrollbar=0"
+              title="Power Consumption Dashboard"></iframe>
+            <div class="dash-preview-overlay"
+              data-pdf="dashboards/powerconsumptiondashboard (1).pdf"
+              data-title="Power Consumption Dashboard">
+              <button class="dash-preview-btn">⤢ Expand</button>
+            </div>
+          </div>
+          <div class="dash-body">
+            <span class="dash-cat-badge">Power BI</span>
+            <div class="dash-title">Power Consumption Dashboard</div>
+            <p class="dash-desc">Monitors electricity usage patterns, peak demand periods, and consumption trends across zones to enable energy efficiency analysis.</p>
+            <div class="dash-tools">
+              <span class="dash-tool-tag">Power BI</span>
+              <span class="dash-tool-tag">DAX</span>
+            </div>
+            <div class="dash-actions">
+              <a href="dashboards/powerconsumptiondashboard (1).pdf" download class="dash-btn primary">⬇ Download</a>
+              <button class="dash-btn open-modal"
+                data-pdf="dashboards/powerconsumptiondashboard (1).pdf"
+                data-title="Power Consumption Dashboard">⤢ Full View</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Student Performance Dashboard -->
+        <div class="dash-card" data-cat="education">
+          <div class="dash-preview">
+            <iframe
+              src="dashboards/studentperformancedbshwethan.pdf#toolbar=0&navpanes=0&scrollbar=0"
+              title="Student Performance Dashboard"></iframe>
+            <div class="dash-preview-overlay"
+              data-pdf="dashboards/studentperformancedbshwethan.pdf"
+              data-title="Student Performance Dashboard">
+              <button class="dash-preview-btn">⤢ Expand</button>
+            </div>
+          </div>
+          <div class="dash-body">
+            <span class="dash-cat-badge">Education</span>
+            <div class="dash-title">Student Performance Dashboard</div>
+            <p class="dash-desc">Visualizes student academic performance across subjects, attendance patterns, and grade distributions to identify areas for early intervention.</p>
+            <div class="dash-tools">
+              <span class="dash-tool-tag">Power BI</span>
+              <span class="dash-tool-tag">DAX</span>
+              <span class="dash-tool-tag">Excel</span>
+            </div>
+            <div class="dash-actions">
+              <a href="dashboards/studentperformancedbshwethan.pdf" download class="dash-btn primary">⬇ Download</a>
+              <button class="dash-btn open-modal"
+                data-pdf="dashboards/studentperformancedbshwethan.pdf"
+                data-title="Student Performance Dashboard">⤢ Full View</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Dashboard viewer">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">Dashboard</span>
+        <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-iframe-wrap">
+        <iframe id="modalIframe" src="" title="Dashboard PDF viewer"></iframe>
+      </div>
+      <div class="modal-footer">
+        <a id="modalDownload" href="#" download class="dash-btn primary">⬇ Download PDF</a>
+        <button class="dash-btn" id="modalCloseBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">[SKA]</span>
+        <span class="footer-copy">© 2026 Shwethan Kumar Anumalla</span>
+        <a href="index.html" class="footer-link">← Back to Portfolio</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    // ── NAVBAR ──
+    const navbar    = document.getElementById('navbar');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    // ── FADE-IN ──
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // ── FILTER ──
+    const filterBtns = document.querySelectorAll('.dash-filter');
+    const dashCards  = document.querySelectorAll('.dash-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        dashCards.forEach(card => {
+          card.classList.toggle('hidden', filter !== 'all' && card.dataset.cat !== filter);
+        });
+      });
+    });
+
+    // ── MODAL ──
+    const overlay       = document.getElementById('modalOverlay');
+    const modalIframe   = document.getElementById('modalIframe');
+    const modalTitle    = document.getElementById('modalTitle');
+    const modalDownload = document.getElementById('modalDownload');
+    const modalClose    = document.getElementById('modalClose');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+    function openModal(pdf, title) {
+      modalIframe.src = pdf;
+      modalTitle.textContent = title;
+      modalDownload.href = pdf;
+      modalDownload.setAttribute('download', title + '.pdf');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => { modalIframe.src = ''; }, 300);
+    }
+
+    // Open via card overlay (hover expand)
+    document.querySelectorAll('.dash-preview-overlay').forEach(el => {
+      el.addEventListener('click', () => openModal(el.dataset.pdf, el.dataset.title));
+    });
+
+    // Open via "Full View" button
+    document.querySelectorAll('.open-modal').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.pdf, btn.dataset.title));
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modalCloseBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+</body>
+</html>
